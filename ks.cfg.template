@@ -6,6 +6,8 @@ cdrom
 rootpw TMPL_PSWD
 # System authorization information
 auth  --useshadow  --passalgo=sha512
+# Disable non-root user creation
+user --disabled
 
 # Firewall configuration
 firewall --disabled

@@ -26,7 +26,7 @@ create_vm () {
 
   echo "Creating new ks.cfg file..."
   cp ks.cfg.template $VM_KS
-  sed -i 's/TMPL_PSWD/praqma/g' $VM_KS
+  sed -i 's/TMPL_PSWD/rootPASSWORD/g' $VM_KS
   sed -i 's/TMPL_HOSTNAME/'$SRV_HOSTNAME_PREFIX-$VM_NB'/g' $VM_KS
   sed -i 's/TMPL_IP/192.168.122.'$VM_IP'/g' $VM_KS
   sed -i "s;TMPL_SSH_KEY;$SSH_KEY;g" $VM_KS
@@ -41,10 +41,10 @@ create_vm () {
     --vcpus 1 \
     --disk path=$IMAGEROOT/$SRV_HOSTNAME_PREFIX-$VM_NB.qcow2,size=15 \
     --os-type linux \
-    --os-variant ubuntu1804 \
+    --os-variant ubuntu18.04 \
     --network bridge=virbr0 \
     --graphics vnc,listen=0.0.0.0,port=$VM_PORT \
-    --location /media/sda9/libvirt/images/bionic-server-cloudimg-amd64.img \
+    --location 'http://sg.archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/' \
     --initrd-inject $VM_KS --extra-args="ks=file:/$VM_KS" 
 
 }
