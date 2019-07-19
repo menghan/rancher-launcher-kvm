@@ -43,9 +43,10 @@ create_vm () {
     --os-type linux \
     --os-variant ubuntu18.04 \
     --network bridge=virbr0 \
-    --graphics vnc,listen=0.0.0.0,port=$VM_PORT \
-    --location 'http://sg.archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/' \
-    --initrd-inject $VM_KS --extra-args="ks=file:/$VM_KS" 
+    --graphics vnc \
+    --location 'http://mirror.nus.edu.sg/ubuntu/dists/bionic/main/installer-amd64/' \
+    --initrd-inject $VM_KS \
+    --extra-args="ks=file:/$VM_KS"
 
 }
 
