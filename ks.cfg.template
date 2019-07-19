@@ -19,9 +19,9 @@ text
 # Do not configure the X Window System
 skipx
 # System timezone, language and keyboard
-timezone --utc Europe/Copenhagen
-lang da_DK.UTF-8
-keyboard dk-latin1
+timezone --utc Asia/Singapore
+lang en_US.UTF8
+keyboard en-us
 # Network information
 # network  --bootproto=static --ip=192.168.122.110 --device=eth0 --onboot=on
 # If you want to configure a static IP:

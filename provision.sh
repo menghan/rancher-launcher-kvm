@@ -1,5 +1,6 @@
 #!/bin/bash
 
+IMAGEROOT=/media/sda9/libvirt/images
 add_node_to_cluster() {
   local VM_IP=$((110 + $1))
 
@@ -31,20 +32,19 @@ create_vm () {
   sed -i "s;TMPL_SSH_KEY;$SSH_KEY;g" $VM_KS
 
   echo "Creating disc image..."
-  qemu-img create -f qcow2 /vm-disks/$SRV_HOSTNAME_PREFIX-$VM_NB.qcow2 50G
+  qemu-img create -f qcow2 $IMAGEROOT/$SRV_HOSTNAME_PREFIX-$VM_NB.qcow2 20G
 
   echo "Creating virtual machine and running installer..."
   virt-install --name $SRV_HOSTNAME_PREFIX-$VM_NB \
-    --description 'Centos 7 - Kubernetes '$VM_NB \
-    --ram 4096 \
-    --vcpus 2 \
-    --disk path=/vm-disks/$SRV_HOSTNAME_PREFIX-$VM_NB.qcow2,size=15 \
+    --description 'Ubuntu 18 - Kubernetes '$VM_NB \
+    --ram 2048 \
+    --vcpus 1 \
+    --disk path=$IMAGEROOT/$SRV_HOSTNAME_PREFIX-$VM_NB.qcow2,size=15 \
     --os-type linux \
-    --os-variant centos7.0 \
+    --os-variant ubuntu1804 \
     --network bridge=virbr0 \
-    --graphics vnc,listen=127.0.0.1,port=$VM_PORT \
-    --location /cdimages/CentOS-7-x86_64-Minimal-1804.iso \
-    --noautoconsole \
+    --graphics vnc,listen=0.0.0.0,port=$VM_PORT \
+    --location /media/sda9/libvirt/images/bionic-server-cloudimg-amd64.img \
     --initrd-inject $VM_KS --extra-args="ks=file:/$VM_KS" 
 
 }
