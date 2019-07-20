@@ -64,3 +64,13 @@ EOP
 ) > /etc/apt/sources.list
 apt-get update
 apt-get upgrade -y
+
+# docker
+groupadd docker
+usermod -aG docker rke
+mkdir -p /home/rke/.ssh
+cat <<EOF >/home/rke/.ssh/authorized_keys
+TMPL_SSH_KEY
+EOF
+chmod 0400 /home/rke/.ssh/authorized_keys
+chown -R rke:rke /home/rke/.ssh

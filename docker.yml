@@ -1,0 +1,16 @@
+---
+
+- hosts: dockers
+  tasks:
+  - group_by:
+      key: "machine_{{ ansible_machine }}"
+
+- name: docker on x86_64
+  hosts: machine_x86_64
+  roles:
+  - docker.ubuntu.fork
+
+- name: docker on aarch64
+  hosts: machine_aarch64
+  roles:
+  - aarch64docker
