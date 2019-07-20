@@ -4,7 +4,7 @@ IMAGEROOT=/media/sda9/libvirt/images
 add_node_to_cluster() {
   local VM_IP=$((110 + $1))
 
-  echo "    - address: "192.168.122.$VM_IP"
+  echo "    - address: "192.168.123.$VM_IP"
       user: rke
       ssh_key_path: ~/.ssh/id_rsa
       role:
@@ -28,7 +28,7 @@ create_vm () {
   cp ks.cfg.template $VM_KS
   sed -i 's/TMPL_PSWD/rootPASSWORD/g' $VM_KS
   sed -i 's/TMPL_HOSTNAME/'$SRV_HOSTNAME_PREFIX-$VM_NB'/g' $VM_KS
-  sed -i 's/TMPL_IP/192.168.122.'$VM_IP'/g' $VM_KS
+  sed -i 's/TMPL_IP/192.168.123.'$VM_IP'/g' $VM_KS
   sed -i "s;TMPL_SSH_KEY;$SSH_KEY;g" $VM_KS
 
   echo "Creating disc image..."
@@ -43,7 +43,7 @@ create_vm () {
     --disk path=$IMAGEROOT/$SRV_HOSTNAME_PREFIX-$VM_NB.qcow2,size=15 \
     --os-type linux \
     --os-variant ubuntu18.04 \
-    --network bridge=virbr0 \
+    --network network=kvmnat1 \
     --graphics vnc \
     --location 'http://mirror.nus.edu.sg/ubuntu/dists/bionic/main/installer-amd64/' \
     --initrd-inject $VM_KS \

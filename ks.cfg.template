@@ -28,8 +28,8 @@ lang en_US
 keyboard us
 
 # Network information
-network --device eth0 --hostname TMPL_HOSTNAME --bootproto=static --ip=TMPL_IP --netmask=255.255.255.0 --gateway=192.168.122.1 --nameserver 192.168.122.1
-
+network --device eth0 --hostname TMPL_HOSTNAME --bootproto=static --ip=TMPL_IP --netmask=255.255.255.0 --gateway=192.168.123.1 --nameserver 192.168.123.1
+# network --device eth0 --hostname TMPL_HOSTNAME --bootproto=dhcp
 
 # System bootloader configuration
 bootloader --location=mbr
