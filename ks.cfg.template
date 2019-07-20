@@ -50,7 +50,6 @@ reboot
 ubuntu-minimal
 openssh-server
 unattended-upgrades
-linux-image-generic
 python
 sudo
 
@@ -62,8 +61,6 @@ deb http://mirror.nus.edu.sg/ubuntu/ bionic-updates main universe restricted
 deb http://security.ubuntu.com/ubuntu bionic-security main universe restricted
 EOP
 ) > /etc/apt/sources.list
-apt-get update
-apt-get upgrade -y
 
 # docker
 groupadd docker
