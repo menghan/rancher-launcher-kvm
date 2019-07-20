@@ -5,11 +5,11 @@ cdrom
 # apt repo
 url -url http://mirror.nus.edu.sg/ubuntu/
 # Root password
-rootpw TMPL_PSWD
+rootpw --disabled
 # System authorization information
 auth --useshadow --passalgo=sha512
-# Disable non-root user creation
-user --disabled
+# Non-root user creation
+user rke --fullname "Rancher Kubernetes Engine" --password rke
 
 # Firewall configuration
 firewall --disabled
@@ -53,3 +53,14 @@ unattended-upgrades
 linux-image-generic
 python
 sudo
+
+%post
+(
+cat <<'EOP'
+deb http://mirror.nus.edu.sg/ubuntu/ bionic main universe restricted
+deb http://mirror.nus.edu.sg/ubuntu/ bionic-updates main universe restricted
+deb http://security.ubuntu.com/ubuntu bionic-security main universe restricted
+EOP
+) > /etc/apt/sources.list
+apt-get update
+apt-get upgrade -y
