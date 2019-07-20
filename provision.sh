@@ -36,6 +36,7 @@ create_vm () {
 
   echo "Creating virtual machine and running installer..."
   virt-install --name $SRV_HOSTNAME_PREFIX-$VM_NB \
+    --autostart \
     --description 'Ubuntu 18 - Kubernetes '$VM_NB \
     --ram 2048 \
     --vcpus 1 \
