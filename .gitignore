@@ -8,4 +8,4 @@ ks-5.cfg
 ks-6.cfg
 kube_config_cluster.yml
 tiller-rbac-config.yaml
-
+cluster.rkestate
