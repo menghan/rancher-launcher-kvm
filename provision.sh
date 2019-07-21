@@ -38,7 +38,7 @@ create_vm () {
   virt-install --name $SRV_HOSTNAME_PREFIX-$VM_NB \
     --autostart \
     --description 'Ubuntu 18 - Kubernetes '$VM_NB \
-    --ram 2048 \
+    --ram 3072 \
     --vcpus 1 \
     --disk path=$IMAGEROOT/$SRV_HOSTNAME_PREFIX-$VM_NB.qcow2,size=15 \
     --os-type linux \
