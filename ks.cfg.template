@@ -9,7 +9,7 @@ rootpw --disabled
 # System authorization information
 auth --useshadow --passalgo=sha512
 # Non-root user creation
-user rke --fullname "Rancher Kubernetes Engine" --password rkePASSWORD
+user rke --fullname "Rancher Kubernetes Engine" --password rkePASSWORD --groups docker,sudo --uid 1000 --gid 1001
 
 # Firewall configuration
 firewall --disabled

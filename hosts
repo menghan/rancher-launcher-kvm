@@ -1,5 +1,5 @@
 [dockers]
-192.168.122.111 ansible_ssh_user=rke
-192.168.122.112 ansible_ssh_user=rke
-192.168.122.113 ansible_ssh_user=rke
-192.168.122.114 ansible_ssh_user=rke
+192.168.123.111 ansible_ssh_user=rke
+192.168.123.112 ansible_ssh_user=rke
+192.168.123.113 ansible_ssh_user=rke
+192.168.123.114 ansible_ssh_user=rke
