@@ -62,13 +62,11 @@ deb http://mirror.nus.edu.sg/ubuntu/ bionic-updates main universe restricted
 deb http://security.ubuntu.com/ubuntu bionic-security main universe restricted
 EOP
 ) > /etc/apt/sources.list
-groupadd docker || true
-usermod -aG docker rke
 mkdir -p /home/rke/.ssh
 cat <<EOF >/home/rke/.ssh/authorized_keys
 TMPL_SSH_KEY
 EOF
-chown -R rke:rke /home/rke/.ssh
+chown -R 1000:1001 /home/rke
 chmod 0400 /home/rke/.ssh/authorized_keys
 EOS
 /bin/bash /root/init.sh >/root/init.log 2>&1
